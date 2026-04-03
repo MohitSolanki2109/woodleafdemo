@@ -1,19 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About Us – WoodLeaf Interior, Rajkot</title>
-  <meta name="description" content="Learn about WoodLeaf Interior — Rajkot's trusted plywood and interior materials supplier for over 15 years."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us – WoodLeaf Interiors, Rajkot</title>
+  <meta name="description" content="Learn about WoodLeaf Interiors — Rajkot's trusted plywood, laminate, veneer and hardware supplier since 2019."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/styles.css"/>
+
+  <style>
+    /* ── About page specific styles ── */
+
+    /* Story section image — no absolute badge, clean */
+    .story-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 14px;
+      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80') center / cover no-repeat;
+    }
+
+    /* Inline stat pills below the image — no overflow */
+    .img-stats {
+      display: flex;
+      gap: .75rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .img-stat {
+      flex: 1;
+      min-width: 120px;
+      background: var(--dark);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      color: #fff;
+    }
+    .img-stat .isn { font-size: 1.75rem; font-weight: 800; color: var(--brown-lt); line-height: 1; }
+    .img-stat .isl { font-size: .65rem; text-transform: uppercase; letter-spacing: .1em; opacity: .6; margin-top: 4px; }
+
+    /* Story grid — side by side on desktop/tablet, stacked on mobile */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    /* Values grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .value-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 1.75rem;
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 2px 12px rgba(26,18,8,.05);
+      transition: transform .3s, box-shadow .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .value-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--brown), var(--brown-lt));
+      transform: scaleX(0); transform-origin: left; transition: transform .3s;
+    }
+    .value-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .value-card:hover::before { transform: scaleX(1); }
+    .value-icon  { font-size: 2rem; margin-bottom: .65rem; }
+    .value-title { font-size: .95rem; font-weight: 700; color: var(--dark); }
+    .value-desc  { font-size: .8rem; color: var(--muted); line-height: 1.7; margin-top: .35rem; }
+
+    /* Journey layout */
+    .journey-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* Timeline */
+    .timeline { padding-left: 2rem; position: relative; margin-top: 1.75rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--cream-dk); border-radius: 2px; }
+    .tl-item { position: relative; padding-bottom: 1.75rem; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-item::before { content: ''; position: absolute; left: -2rem; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--brown); border: 2px solid var(--cream); transform: translateX(-5px); }
+    .tl-year  { font-size: .7rem; font-weight: 700; color: var(--brown); text-transform: uppercase; letter-spacing: .1em; }
+    .tl-title { font-size: .92rem; font-weight: 700; color: var(--dark); margin-top: 2px; }
+    .tl-desc  { font-size: .8rem; color: var(--muted); margin-top: .25rem; line-height: 1.65; }
+
+    /* Who we serve cards */
+    .serve-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: .75rem;
+    }
+    .serve-card:last-child { margin-bottom: 0; }
+    .serve-emoji { font-size: 1.4rem; flex-shrink: 0; }
+    .serve-title { font-weight: 600; font-size: .88rem; color: #fff; }
+    .serve-sub   { font-size: .73rem; color: rgba(255,255,255,.42); margin-top: 2px; }
+
+    .serve-box {
+      background: var(--dark);
+      padding: 2rem;
+      border-radius: 14px;
+      color: #fff;
+    }
+    .serve-box h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1.25rem; color: #fff; }
+
+    .serve-photo {
+      width: 100%;
+      height: 200px;
+      background: url('https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=600&q=70') center / cover no-repeat;
+      border-radius: 14px;
+      margin-top: 1.25rem;
+    }
+
+    /* ── RESPONSIVE ── */
+
+    /* Tablet (≤1024px) — keep story 2-col, collapse journey only */
+    @media (max-width: 1024px) {
+      .story-grid   { gap: 2.5rem; }
+      .journey-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    /* Mobile (≤768px) — collapse everything to single column */
+    @media (max-width: 768px) {
+      .story-grid   { grid-template-columns: 1fr; gap: 2rem; }
+      .journey-grid { gap: 2rem; }
+      .img-stats    { flex-direction: row; }
+      .img-stat     { min-width: 0; }
+      .img-stat .isn { font-size: 1.4rem; }
+      .values-grid  { grid-template-columns: 1fr; }
+      .serve-photo  { height: 160px; }
+    }
+
+    @media (max-width: 480px) {
+      .img-stats    { gap: .5rem; }
+      .img-stat     { padding: .75rem .5rem; }
+      .img-stat .isn { font-size: 1.25rem; }
+      .img-stat .isl { font-size: .58rem; }
+      .values-grid  { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
+<!-- ── NAV ── -->
 <header class="nav" id="nav">
   <div class="container">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo"><img src="\images\logo-color.png" alt="WoodLeaf Interiors" height="44"/></a>
+      <a href="index.html" class="nav__logo">
+        <img src="images/logo-color.png" alt="WoodLeaf Interiors" height="40"/>
       </a>
       <ul class="nav__links">
         <li><a href="index.html">Home</a></li>
@@ -22,108 +171,225 @@
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="contact.html" class="nav__cta">Contact Us</a></li>
       </ul>
-      <button class="nav__burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <button class="nav__burger" id="burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
+
+<!-- Mobile Drawer -->
 <nav class="nav__drawer" id="drawer">
-  <a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="gallery.html">Gallery</a><a href="contact.html" class="drawer-cta">Contact Us</a>
+  <a href="index.html" class="drawer-logo">
+    <img src="images/logo-dark.png" alt="WoodLeaf Interiors" height="36"/>
+  </a>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="products.html">Products</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html" class="drawer-cta">Contact Us</a>
 </nav>
 
-<!-- PAGE HERO -->
+<!-- ── PAGE HERO ── -->
 <div class="page-hero">
   <div class="container page-hero__inner">
-    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>About Us</span></div>
-    <h1>About <em style="color:var(--brown-lt);font-family:'Crimson Pro',serif;font-style:italic;font-weight:400;">WoodLeaf</em> Interior</h1>
-    <p>15+ years of delivering premium plywood and interior materials to Rajkot and across Gujarat.</p>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <span>About Us</span>
+    </div>
+    <h1>About
+      <em style="color:var(--brown-lt);font-family:'Crimson Pro',serif;font-style:italic;font-weight:400;">WoodLeaf</em>
+      Interiors
+    </h1>
+    <p>Rajkot's trusted supplier of plywood, laminates, veneers &amp; hardware — serving since 2019.</p>
   </div>
 </div>
 
-<!-- STORY -->
+<!-- ── STORY ── -->
 <section class="section section--cream">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;" class="resp-2col">
+    <div class="story-grid">
+
+      <!-- Text column -->
       <div class="reveal">
         <div class="label">Our Story</div>
         <h2 class="heading">Built on <em>Wood</em>, Grounded in Trust</h2>
-        <p style="color:var(--muted);line-height:1.8;margin-top:1rem;">WoodLeaf Interior was founded in 2009 by Mr. Bhavesh Mehta, a passionate carpenter who believed that quality raw materials were the foundation of beautiful furniture. Starting from a small shop in Rajkot, we have grown into one of Gujarat's most respected plywood and interior materials suppliers.</p>
-        <p style="color:var(--muted);line-height:1.8;margin-top:1rem;">Today, we serve over 500 active clients — including carpenters, interior designers, building contractors, furniture manufacturers, and homeowners across Rajkot, Morbi, Jamnagar, and beyond. Our commitment: <strong style="color:var(--dark);">right material, right price, right time.</strong></p>
-        <p style="color:var(--muted);line-height:1.8;margin-top:1rem;">We stock only ISI-certified and factory-direct plywood from India's leading brands including Greenply, Century Ply, Kitply, and Merino.</p>
+        <p style="color:var(--muted);line-height:1.8;margin-top:1rem;">
+          WoodLeaf Interiors was founded with a simple belief — quality raw materials are the foundation of beautiful furniture and lasting construction. Starting from a small showroom on Tagore Road, Rajkot, we have grown into one of the region's most trusted suppliers of plywood, laminates, veneers, and hardware.
+        </p>
+        <p style="color:var(--muted);line-height:1.8;margin-top:1rem;">
+          Today we serve carpenters, interior designers, building contractors, furniture manufacturers, and homeowners across Rajkot, Morbi, Jamnagar, and beyond. Our promise is simple:
+          <strong style="color:var(--dark);">right material, right price, right time.</strong>
+        </p>
+        <p style="color:var(--muted);line-height:1.8;margin-top:1rem;">
+          Every product we stock is verified for quality. We carry ISI-certified plywood, high-pressure laminates in hundreds of designs, natural wood veneers, and a full range of furniture hardware — all under one roof.
+        </p>
       </div>
-      <div class="reveal d2" style="position:relative;">
-        <div style="width:100%;aspect-ratio:4/3;background:url('https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=800&q=80') center/cover;border-radius:14px;"></div>
-        <div style="position:absolute;bottom:-16px;left:-16px;background:var(--dark);padding:1.25rem 1.5rem;border-radius:12px;color:#fff;box-shadow:0 8px 32px rgba(0,0,0,.3);">
-          <div style="font-size:1.9rem;font-weight:800;color:var(--brown-lt);line-height:1;" data-count="500">0</div>
-          <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;opacity:.6;margin-top:3px;">Happy Clients</div>
+
+      <!-- Image + inline stats column -->
+      <div class="reveal d2">
+        <div class="story-img"></div>
+        <!-- Stats sit BELOW the image — no absolute positioning, no overflow -->
+        <div class="img-stats">
+          <div class="img-stat">
+            <div class="isn" data-count="6">0</div>
+            <div class="isl">Years Active</div>
+          </div>
+          <div class="img-stat">
+            <div class="isn" data-count="500">0</div>
+            <div class="isl">Happy Clients</div>
+          </div>
+          <div class="img-stat">
+            <div class="isn" data-count="50">0</div>
+            <div class="isl">Product Types</div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- STATS -->
+<!-- ── STATS STRIP ── -->
 <div class="stats-strip">
   <div class="container">
     <div class="stats-grid">
-      <div class="reveal" style="text-align:center;"><div class="s-num" data-count="15">0</div><div style="color:var(--brown-lt);font-weight:600;font-size:1.2rem;line-height:1;">+</div><div class="s-lbl">Years in Business</div></div>
-      <div class="reveal d1" style="text-align:center;"><div class="s-num" data-count="500">0</div><div style="color:var(--brown-lt);font-weight:600;font-size:1.2rem;line-height:1;">+</div><div class="s-lbl">Happy Clients</div></div>
-      <div class="reveal d2" style="text-align:center;"><div class="s-num" data-count="50">0</div><div style="color:var(--brown-lt);font-weight:600;font-size:1.2rem;line-height:1;">+</div><div class="s-lbl">Product Types</div></div>
-      <div class="reveal d3" style="text-align:center;"><div class="s-num" data-count="1200">0</div><div style="color:var(--brown-lt);font-weight:600;font-size:1.2rem;line-height:1;">+</div><div class="s-lbl">Projects Completed</div></div>
+      <div class="reveal" style="text-align:center;">
+        <div class="s-num" data-count="6">0</div>
+        <div class="s-lbl">Years in Business</div>
+      </div>
+      <div class="reveal d1" style="text-align:center;">
+        <div class="s-num" data-count="500">0</div>
+        <div class="s-lbl">Happy Clients</div>
+      </div>
+      <div class="reveal d2" style="text-align:center;">
+        <div class="s-num" data-count="50">0</div>
+        <div class="s-lbl">Product Types</div>
+      </div>
+      <div class="reveal d3" style="text-align:center;">
+        <div class="s-num" data-count="1200">0</div>
+        <div class="s-lbl">Projects Completed</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- VALUES -->
+<!-- ── VALUES ── -->
 <section class="section section--cdk">
   <div class="container">
-    <div style="text-align:center;margin-bottom:2.5rem;">
+    <div style="text-align:center;margin-bottom:2rem;">
       <div class="label" style="justify-content:center;">Our Values</div>
       <h2 class="heading">What <em>Drives</em> Us</h2>
     </div>
-    <div class="why-grid">
-      <div class="why-card reveal"><div class="why-icon">🎯</div><div class="why-title">Quality First</div><div class="why-desc">We never stock substandard materials. Every batch is verified. Every product certified.</div></div>
-      <div class="why-card reveal d1"><div class="why-icon">🤝</div><div class="why-title">Customer Trust</div><div class="why-desc">Our relationships are built on honesty. We give the right advice, even if it means recommending a less expensive option.</div></div>
-      <div class="why-card reveal d2"><div class="why-icon">🌱</div><div class="why-title">Sustainability</div><div class="why-desc">We prioritize suppliers using sustainable forestry practices. Good business should be good for the planet.</div></div>
-      <div class="why-card reveal d3"><div class="why-icon">⚡</div><div class="why-title">Speed & Reliability</div><div class="why-desc">Construction projects can't wait. We maintain large inventory levels so your orders ship fast — same day in Rajkot.</div></div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-icon">🎯</div>
+        <div class="value-title">Quality First</div>
+        <div class="value-desc">We never stock substandard materials. Every batch is quality-checked before it reaches your project.</div>
+      </div>
+      <div class="value-card reveal d1">
+        <div class="value-icon">🤝</div>
+        <div class="value-title">Customer Trust</div>
+        <div class="value-desc">Our relationships are built on honesty. We give the right advice — even if it means a less expensive recommendation.</div>
+      </div>
+      <div class="value-card reveal d2">
+        <div class="value-icon">🌱</div>
+        <div class="value-title">Sustainability</div>
+        <div class="value-desc">We work with suppliers who follow responsible forestry practices, because good business should also be good for the planet.</div>
+      </div>
+      <div class="value-card reveal d3">
+        <div class="value-icon">⚡</div>
+        <div class="value-title">Speed &amp; Reliability</div>
+        <div class="value-desc">Construction can't wait. We maintain large stock so your orders are fulfilled fast — same day within Rajkot.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- JOURNEY & WHO WE SERVE -->
+<!-- ── JOURNEY & WHO WE SERVE ── -->
 <section class="section section--cream">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;" class="resp-2col">
+    <div class="journey-grid">
+
+      <!-- Timeline column -->
       <div>
         <div class="label reveal">Our Journey</div>
         <h2 class="heading reveal">How We <em>Grew</em></h2>
         <div class="timeline">
-          <div class="tl-item reveal"><div class="tl-year">2009</div><div class="tl-title">WoodLeaf Founded</div><div class="tl-desc">Mr. Bhavesh Mehta opens a small plywood shop in Rajkot with a vision to supply quality materials at fair prices.</div></div>
-          <div class="tl-item reveal"><div class="tl-year">2013</div><div class="tl-title">Expanded to Laminates & Veneers</div><div class="tl-desc">Added decorative laminates and veneer sheets to meet growing demand from interior designers.</div></div>
-          <div class="tl-item reveal"><div class="tl-year">2017</div><div class="tl-title">New Showroom Inaugurated</div><div class="tl-desc">Moved to a larger 5,000 sq ft showroom with display sections for all product categories.</div></div>
-          <div class="tl-item reveal"><div class="tl-year">2020</div><div class="tl-title">500+ Client Milestone</div><div class="tl-desc">Reached over 500 active clients including major contractors, furniture manufacturers, and retail customers.</div></div>
-          <div class="tl-item reveal"><div class="tl-year">2024</div><div class="tl-title">Digital Presence & Expansion</div><div class="tl-desc">Launched online catalog and expanded delivery to cover all major cities in the Saurashtra region.</div></div>
-        </div>
-      </div>
-      <div class="reveal d2">
-        <div style="background:var(--dark);padding:2.25rem;border-radius:14px;color:#fff;">
-          <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:1.25rem;">Who We Serve</h3>
-          <div style="display:flex;flex-direction:column;gap:.75rem;">
-            <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.05);padding:.9rem;border-radius:8px;border:1px solid rgba(255,255,255,.07);"><span style="font-size:1.4rem;">🪚</span><div><div style="font-weight:600;font-size:.88rem;">Carpenters & Furniture Makers</div><div style="font-size:.75rem;opacity:.45;margin-top:2px;">Wholesale pricing, flexible credit terms</div></div></div>
-            <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.05);padding:.9rem;border-radius:8px;border:1px solid rgba(255,255,255,.07);"><span style="font-size:1.4rem;">🏗️</span><div><div style="font-weight:600;font-size:.88rem;">Building Contractors</div><div style="font-size:.75rem;opacity:.45;margin-top:2px;">Bulk supply, project-based discounts</div></div></div>
-            <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.05);padding:.9rem;border-radius:8px;border:1px solid rgba(255,255,255,.07);"><span style="font-size:1.4rem;">🎨</span><div><div style="font-weight:600;font-size:.88rem;">Interior Designers</div><div style="font-size:.75rem;opacity:.45;margin-top:2px;">Premium finishes, laminate samples</div></div></div>
-            <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.05);padding:.9rem;border-radius:8px;border:1px solid rgba(255,255,255,.07);"><span style="font-size:1.4rem;">🏠</span><div><div style="font-weight:600;font-size:.88rem;">Homeowners</div><div style="font-size:.75rem;opacity:.45;margin-top:2px;">Expert guidance, small quantities available</div></div></div>
+          <div class="tl-item reveal">
+            <div class="tl-year">2019</div>
+            <div class="tl-title">WoodLeaf Interiors Founded</div>
+            <div class="tl-desc">Opened our showroom on Tagore Road, Rajkot — opposite Atul Motors — with a focus on quality plywood and hardware.</div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-year">2020</div>
+            <div class="tl-title">Expanded Product Range</div>
+            <div class="tl-desc">Added decorative laminates and veneer sheets to meet growing demand from interior designers and furniture makers.</div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-year">2022</div>
+            <div class="tl-title">GST Verified Supplier</div>
+            <div class="tl-desc">Became a GST-verified business, building trust with contractors, builders, and large-scale buyers across Gujarat.</div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-year">2023</div>
+            <div class="tl-title">Registered as LLP</div>
+            <div class="tl-desc">Incorporated as Woodleaf Interiors LLP with 3 directors, scaling our operations and strengthening our supply network.</div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-year">2024</div>
+            <div class="tl-title">Online &amp; Growing</div>
+            <div class="tl-desc">Launched our website and digital presence to serve clients across Saurashtra more efficiently.</div>
           </div>
         </div>
-        <div style="background:url('https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=600&q=70') center/cover;height:200px;border-radius:14px;margin-top:1.25rem;"></div>
       </div>
+
+      <!-- Who we serve column -->
+      <div class="reveal d2">
+        <div class="serve-box">
+          <h3>Who We Serve</h3>
+          <div class="serve-card">
+            <span class="serve-emoji">🪚</span>
+            <div>
+              <div class="serve-title">Carpenters &amp; Furniture Makers</div>
+              <div class="serve-sub">Wholesale pricing, flexible credit terms</div>
+            </div>
+          </div>
+          <div class="serve-card">
+            <span class="serve-emoji">🏗️</span>
+            <div>
+              <div class="serve-title">Building Contractors</div>
+              <div class="serve-sub">Bulk supply, project-based discounts</div>
+            </div>
+          </div>
+          <div class="serve-card">
+            <span class="serve-emoji">🎨</span>
+            <div>
+              <div class="serve-title">Interior Designers</div>
+              <div class="serve-sub">Premium finishes, laminate samples available</div>
+            </div>
+          </div>
+          <div class="serve-card">
+            <span class="serve-emoji">🏠</span>
+            <div>
+              <div class="serve-title">Homeowners</div>
+              <div class="serve-sub">Expert guidance, small quantities welcome</div>
+            </div>
+          </div>
+        </div>
+        <div class="serve-photo"></div>
+      </div>
+
     </div>
   </div>
 </section>
 
+<!-- ── CTA ── -->
 <div class="cta">
   <div class="container cta__inner">
     <h2>Visit Our Showroom Today</h2>
-    <p>Come see our full range of products in person. Our team will guide you to the best materials for your project.</p>
+    <p>Come see our full product range in person on Tagore Road, Rajkot. Our team is ready to help.</p>
     <div class="cta__btns">
       <a href="contact.html" class="btn btn-white">Get Directions →</a>
       <a href="products.html" class="btn btn-outline">Browse Products</a>
@@ -131,14 +397,15 @@
   </div>
 </div>
 
-
-<!-- ===== FOOTER ===== -->
+<!-- ── FOOTER ── -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a href="index.html" class="footer-logo"><img src="images/logo-color.png" alt="WoodLeaf Interiors" height="52"/></a>
-        <p class="footer-about">Premium plywood and interior materials supplier in Rajkot, Gujarat. Trusted by 500+ carpenters, contractors, and interior designers since 2009.</p>
+        <a href="index.html" class="footer-logo">
+          <img src="images/logo-color.png" alt="WoodLeaf Interiors" height="44"/>
+        </a>
+        <p class="footer-about">Quality plywood, laminates, veneers, and hardware — at our Tagore Road showroom in Rajkot since 2019.</p>
       </div>
       <div>
         <h4>Quick Links</h4>
@@ -158,24 +425,24 @@
           <li><a href="products.html">MDF Boards</a></li>
           <li><a href="products.html">Laminates</a></li>
           <li><a href="products.html">Veneers</a></li>
-          <li><a href="products.html">PVC Boards</a></li>
+          <li><a href="products.html">Hardware Fittings</a></li>
         </ul>
       </div>
       <div>
         <h4>Contact Info</h4>
-        <div class="f-contact"><span class="ic">📍</span><span>Near Trikon Baug, Rajkot, Gujarat – 360001</span></div>
+        <div class="f-contact"><span class="ic">📍</span><span>Opp. Atul Motors, Tagore Road, Rajkot – 360002</span></div>
         <div class="f-contact"><span class="ic">📞</span><a href="tel:+919876543210">+91 98765 43210</a></div>
-        <div class="f-contact"><span class="ic">✉️</span><span>info&#64;woodleafinterior&#46;com</span></div>
-        <div class="f-contact"><span class="ic">🕐</span><span>Mon–Sat: 9 AM – 7 PM</span></div>
+        <div class="f-contact"><span class="ic">✉️</span><span>info&#64;woodleafinteriors&#46;com</span></div>
+        <div class="f-contact"><span class="ic">🕐</span><span>Mon–Sat: 10 AM – 7 PM</span></div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2024 WoodLeaf Interior. All rights reserved.</span>
+      <span>© 2024 WoodLeaf Interiors. All rights reserved.</span>
       <span>Made with ♥ in Rajkot, Gujarat</span>
     </div>
   </div>
 </footer>
-<style>.resp-2col{grid-template-columns:1fr 1fr}@media(max-width:900px){.resp-2col{grid-template-columns:1fr;gap:2.5rem}}</style>
+
 <script src="js/main.js"></script>
 </body>
 </html>
