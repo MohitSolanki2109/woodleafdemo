@@ -7,13 +7,51 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/styles.css"/>
+  <style>
+    * {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.contact-grid {
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.form-row {
+  grid-template-columns: 1fr;
+}
+
+.c-form,
+.c-info,
+.map-box {
+  width: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .form-row     { grid-template-columns: 1fr; }
+  .c-form       { padding: 1.25rem 1rem; }
+  .c-info       { padding: 1.5rem 1rem; }
+  #submitBtn    { white-space: normal; }
+
+  /* This is the real fix — stops right side cutoff */
+  .section .container { padding: 0 1rem; }
+  .c-form, .c-info, .map-box,
+  .service-cards, .service-card {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+  </style>
 </head>
 <body>
 
 <header class="nav" id="nav">
   <div class="container">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo"><img src="\images\logo-color.png" alt="WoodLeaf Interiors" height="44"/></a>
+      <a href="index.html" class="nav__logo"><img src="E:\woodleaf-interior-website\images\logo-color.png" alt="WoodLeaf Interiors" height="44"/></a>
       </a>
       <ul class="nav__links">
         <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html" class="nav__cta">Contact Us</a></li>
